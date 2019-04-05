@@ -23,12 +23,12 @@
 // Definition(s):
 //****************************************************************************
 
-#define PROJ_EEPROM_EN      (EE_ON) //EE_OFF
+#define PROJ_EEPROM_EN      (EE_OFF) //EE_OFF
 //#define PROJ_EEPROM_EN      (EE_OFF)
 
 //Set Device ID
 #define PROJ_CONFIG_ID      100
-#define PROJ_CONFIG_I2CDATA (COMM_DATA_ENVF)
+#define PROJ_CONFIG_I2CDATA (COMM_DATA_BPF)
 #define PROJ_CONFIG_SPIDATA (COMM_DATA_ENVF)
 #define PROJ_CONFIG_RTGPIOLINE (SYS_CONFIG_RTGPIO_OFF)
 #define PROJ_CONFIG_DSPWINDOW 100 //100ms

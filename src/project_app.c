@@ -55,10 +55,26 @@ void proj_core(void)
         switch(mode)
         {
             case PROJ_MODE_APP1:
+                /*
                 for(uint8_t ch=0;ch<EMG_NUM_CH;ch++)
                 {
                     //Example Usage
                     proj_app_f1( (float32_t*) bpf_get_buf(ch,size), &proj_buffer[dtype][ch][proj_index], size);
+                    proj_buffer[dtype][ch][proj_index+PROJ_BUFFER_SIZE] = proj_buffer[dtype][ch][proj_index];
+                }*/
+
+                proj_app_f1( (float32_t*) adcbuf_get_buf(3,size), &proj_buffer[dtype][0][proj_index], size);
+                proj_app_f1( (float32_t*) bpf_get_buf(3,size), &proj_buffer[dtype][1][proj_index], size);
+                proj_app_f1( (float32_t*) envf_get_buf(3,size), &proj_buffer[dtype][2][proj_index], size);
+                //proj_app_f1( (float32_t*) proj_get_buf(dtype, 3,size), &proj_buffer[dtype][3][proj_index], size);
+                proj_app_f1( (float32_t*) adcbuf_get_buf(5,size), &proj_buffer[dtype][4][proj_index], size);
+                proj_app_f1( (float32_t*) bpf_get_buf(5,size), &proj_buffer[dtype][5][proj_index], size);
+                proj_app_f1( (float32_t*) envf_get_buf(5,size), &proj_buffer[dtype][6][proj_index], size);
+                //proj_app_f1( (float32_t*) proj_get_buf(dtype, 5,size), &proj_buffer[dtype][7][proj_index], size);
+
+                for(uint8_t ch=0;ch<EMG_NUM_CH;ch++)
+                {
+                    //Example Usage
                     proj_buffer[dtype][ch][proj_index+PROJ_BUFFER_SIZE] = proj_buffer[dtype][ch][proj_index];
                 }
 

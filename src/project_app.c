@@ -56,24 +56,35 @@ void proj_core(void)
         {
             case PROJ_MODE_APP1:
 
+            /*
                 for(uint8_t ch=0;ch<EMG_NUM_CH;ch++)
                 {
                     //Example Usage
                     proj_app_f1( (float32_t*) bpf_get_buf(ch,size), &proj_buffer[dtype][ch][proj_index], size);
                     proj_buffer[dtype][ch][proj_index+PROJ_BUFFER_SIZE] = proj_buffer[dtype][ch][proj_index];
                 }
+            */
+            /*
+                for(uint8_t ch=0;ch<EMG_NUM_CH;ch++)
+                {
+                    //Example Usage
+                    proj_buffer[dtype][ch][proj_index] = envf_get_val(ch);
+                }
+            */
+                
+                proj_buffer[dtype][0][proj_index] = raw_get_val(2);
+                proj_buffer[dtype][1][proj_index] = raw_get_val(3);
 
-                proj_buffer[dtype][0][proj_index] = bpf_get_buf(3,2)[0];
-                proj_buffer[dtype][1][proj_index] = bpf_get_buf(3,2)[1];
+                proj_buffer[dtype][2][proj_index] = raw_get_val(4);
+                proj_buffer[dtype][3][proj_index] = raw_get_val(5);
+                proj_buffer[dtype][4][proj_index] = bpf_get_val(2);
+                proj_buffer[dtype][5][proj_index] = bpf_get_val(3);
+                proj_buffer[dtype][6][proj_index] = bpf_get_val(4);
+                proj_buffer[dtype][7][proj_index] = bpf_get_val(5);
 
-                proj_buffer[dtype][2][proj_index] = adcbuf_get_buf(3,4)[0]*0.5;
-                proj_buffer[dtype][3][proj_index] = adcbuf_get_buf(3,4)[1]*0.5;
-                proj_buffer[dtype][4][proj_index] = adcbuf_get_buf(3,4)[2]*0.5;
-                proj_buffer[dtype][5][proj_index] = adcbuf_get_buf(3,4)[3]*0.5;
-
-                proj_buffer[dtype][6][proj_index] = envf_get_buf(3,2)[0];
-                proj_buffer[dtype][7][proj_index] = envf_get_buf(3,2)[1];
-
+                // proj_buffer[dtype][6][proj_index] = 70;
+                // proj_buffer[dtype][7][proj_index] = 80;
+                
 
                 for(uint8_t ch=0;ch<EMG_NUM_CH;ch++)
                 {
